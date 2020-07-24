@@ -47,9 +47,10 @@ class Database:
 		return list(self._tables.keys())
 
 	@resource_error
-	def create_table(self, name: str, rows: int=1000, cols: int=20):
+	def create_table(self, name: str, rows: int=100, cols: int=20):
 		if name in self.get_all_tables(): raise NameError(f"Table name {name} already used")
 		self._tables[name] = self.data.add_worksheet(title=name, rows=str(rows), cols=str(cols))
+		return name
 
 	@resource_error
 	def fetch_table(self, name: str) -> list:
